@@ -5,8 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -16,8 +15,8 @@ datasource db {
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
-  password  String   // Consider hashing with bcrypt
-  name      String?  // Optional: user's display name
+  password  String   
+  name      String?  
   tasks     Task[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

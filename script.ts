@@ -3,6 +3,26 @@ import { prisma } from './lib/prisma'
 async function main() {
   console.log('🚀 Testing Taskmaster database...\n')
 
+  // Clean up existing test data first
+  console.log('🧹 Cleaning existing test data...')
+  await prisma.task.deleteMany({
+    where: {
+      user: {
+        email: {
+          in: ['alice@taskmaster.io', 'bob@taskmaster.io']
+        }
+      }
+    }
+  })
+  await prisma.user.deleteMany({
+    where: {
+      email: {
+        in: ['alice@taskmaster.io', 'bob@taskmaster.io']
+      }
+    }
+  })
+  console.log('✅ Cleaned up existing data\n')
+
   // Create a new user with tasks
   const user = await prisma.user.create({
     data: {
