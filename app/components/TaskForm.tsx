@@ -54,19 +54,19 @@ export default function TaskForm({ selectedUser, onCreateTask }: TaskFormProps) 
           placeholder="Task title"
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+          className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900 placeholder:text-gray-500 font-medium"
         />
         <textarea
           placeholder="Description (optional)"
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none"
+          className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none bg-white text-gray-900 placeholder:text-gray-500"
           rows={3}
         />
         <select
           value={formData.priority}
           onChange={(e) => setFormData({ ...formData, priority: e.target.value as Priority })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+          className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900 font-medium"
         >
           <option value="LOW">Low Priority</option>
           <option value="MEDIUM">Medium Priority</option>
@@ -77,7 +77,7 @@ export default function TaskForm({ selectedUser, onCreateTask }: TaskFormProps) 
           type="date"
           value={formData.dueDate}
           onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+          className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900 font-medium"
         />
         <button
           onClick={handleSubmit}
@@ -87,7 +87,7 @@ export default function TaskForm({ selectedUser, onCreateTask }: TaskFormProps) 
           Add Task
         </button>
         {!selectedUser && (
-          <p className="text-sm text-red-600 text-center">Please select a user first</p>
+          <p className="text-sm text-red-600 text-center font-medium">Please select a user first</p>
         )}
       </div>
     </div>

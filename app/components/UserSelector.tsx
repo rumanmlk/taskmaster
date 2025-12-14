@@ -19,7 +19,7 @@ export default function UserSelector({ users, selectedUser, onSelectUser, tasks 
       <select
         value={selectedUser}
         onChange={(e) => onSelectUser(e.target.value)}
-        className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+        className="px-4 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-white text-gray-900 font-medium"
       >
         <option value="">All Users</option>
         {users.map(user => (
@@ -31,13 +31,13 @@ export default function UserSelector({ users, selectedUser, onSelectUser, tasks 
 
       {selectedUser && (
         <div className="flex gap-4 text-sm">
-          <div className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
+          <div className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full font-semibold">
             Total: {stats.total}
           </div>
-          <div className="px-3 py-1 bg-green-100 text-green-700 rounded-full">
+          <div className="px-3 py-1 bg-green-100 text-green-700 rounded-full font-semibold">
             Completed: {stats.completed}
           </div>
-          <div className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full">
+          <div className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full font-semibold">
             Active: {stats.active}
           </div>
         </div>
