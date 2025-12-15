@@ -1,6 +1,7 @@
 # Stage 1: Dependencies
 FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
+RUN npm install -g npm@11
 WORKDIR /app
 
 # Copy package files
