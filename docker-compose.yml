@@ -1,13 +1,47 @@
 services:
-  db:
+  # PostgreSQL Database
+  postgres:
     image: postgres:15
+    container_name: taskmaster-db
+    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 8686112233
       POSTGRES_DB: taskmaster
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taskmaster"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Application (for production Docker setup)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: taskmaster-app
+    restart: always
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgresql://postgres:8686112233@postgres:5432/taskmaster?schema=public
+      NODE_ENV: production
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      sh -c "
+        npx prisma migrate deploy &&
+        node server.js
+      "
+
 volumes:
-  db-data:
+  postgres_data:
+
+networks:
+  default:
+    name: taskmaster-network
